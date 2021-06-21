@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .container {
+            margin: 50px auto 0 auto;
+            width: 400px;
+            height: 560px;
+            box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.36);
+            border-radius: 5px;
+        }
+
+        .h2-container {
+            text-align: center;
+            padding-top: 23px;
+        }
+
+        .h2-Style {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .data-container {
+            width: 100%;
+            height: 100px;
+        }
+
+        .label-Style {
+            display: block;
+            margin-left: 35px;
+            margin-bottom: 8px;
+            color: #77778D;
+            font-size: 15px;
+            font-family: Arial, Helvetica;
+        }
+
+        .input-Style {
+            display: block;
+            margin: 0 auto;
+            width: 80%;
+            height: 30px;
+            border: 3px solid #F0F0F0;
+            border-radius: 5px;
+        }
+
+        .btn {
+            width: 80%;
+            height: 40px;
+            border-radius: 5px;
+            border: 0;
+            background: #3498DB;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFF;
+            display: block;
+            margin: 0 auto;
+            font-size: 17px;
+        }
+
+        .remind {
+            font-size: 10px;
+            color: red;
+            margin: 0 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <form class="container" action="">
+        <div class="h2-container">
+            <h2 class="h2-Style">Register With Us</h2>
+        </div>
+        <div id="useContainer" class="data-container">
+            <label class="label-Style" for="">Username</label>
+            <input id="use" class="input-Style" type="text" placeholder="Enter username">
+        </div>
+        <div id="mailContainer" class="data-container">
+            <label class="label-Style" for="">Email</label>
+            <input id="mail" class="input-Style" type="email" placeholder="Enter email">
+        </div>
+        <div id="passContainer" class="data-container">
+            <label class="label-Style" for="">Password</label>
+            <input id="pass" class="input-Style" type="password" placeholder="Enter password">
+        </div>
+        <div id="passAgainContainer" class="data-container">
+            <label class="label-Style" for="">Confirm Password</label>
+            <input id="passAgain" class="input-Style" type="password" placeholder="Enter password again">
+        </div>
+
+        <button id="btn" class="btn"> Submit </button>
+
+    </form>
+
+    <script>
+        var btn = document.getElementById("btn");
+        var use = document.getElementById("use");
+        var mail = document.getElementById("mail");
+        var pass = document.getElementById("pass");
+        var passAgain = document.getElementById("passAgain");
+
+        var useContainer = document.getElementById("useContainer");
+        var mailContainer = document.getElementById("mailContainer")
+        var passContainer = document.getElementById("passContainer");
+        var passAgainContainer = document.getElementById("passAgainContainer")
+
+
+
+        btn.addEventListener("click", e => {
+            e.preventDefault()  //停止表單動作
+            useVerification()
+            mailVerification()
+            passVerification()
+            passAgainVerification()
+        })
+
+        function useVerification() {
+
+            if (useContainer.lastElementChild.tagName != "P" && use.value.length < 3) {
+                useContainer.appendChild(addRemind("Username must be at least 3 characters"))
+                errorColor(use)
+            } else {
+                if (useContainer.lastElementChild.tagName === "P" && use.value.length > 2) {
+                    useContainer.lastElementChild.remove(useContainer.lastElementChild.tagName);
+                }
+            }
+            if (useContainer.lastElementChild.tagName != "P") okColoer(use)
+        }
+
+        function mailVerification() {
+
+            if (mailContainer.lastElementChild.tagName != "P" && (mail.validity.valid === false || mail.value === "")) { //mail驗證，錯誤
+                mailContainer.appendChild(addRemind("Email is not valid"))
+                errorColor(mail)
+            } else {
+                if (mailContainer.lastElementChild.tagName === "P" && (mail.validity.valid === false || mail.value != "")) {
+                    mailContainer.lastElementChild.remove(mailContainer.lastElementChild.tagName);
+                }
+            }
+            if (mailContainer.lastElementChild.tagName != "P") okColoer(mail)
+        }
+
+        function passVerification() {
+
+            if (passContainer.lastElementChild.tagName != "P" && pass.value.length < 6) {
+                passContainer.appendChild(addRemind("Username must be at least 6 characters"))
+                errorColor(pass)
+            } else {
+                if (passContainer.lastElementChild.tagName === "P" && pass.value.length > 5) {
+                    passContainer.lastElementChild.remove(passContainer.lastElementChild.tagName);
+                }
+            }
+            if (passContainer.lastElementChild.tagName != "P") okColoer(pass)
+        }
+
+        function passAgainVerification() {
+
+            if (passAgain.value === "") {
+                if (passAgainContainer.lastElementChild.tagName != "P") {
+                    passAgainContainer.appendChild(addRemind("Password2 is required"))
+                    errorColor(passAgain)
+                } else {
+                    passAgainContainer.lastElementChild.innerText = "Password2 is required"
+                    errorColor(passAgain)
+                }
+            }
+
+            else {
+                if (passAgain.value != pass.value) {
+
+                    if (passAgainContainer.lastElementChild.tagName != "P") {
+                        passAgainContainer.appendChild(addRemind("Passwords2 do not match"))
+                        errorColor(passAgain)
+                    } else {
+                        passAgainContainer.lastElementChild.innerText = "Passwords2 do not match";
+                        errorColor(passAgain)
+                    }
+                }
+                else {
+                    if (passAgainContainer.lastElementChild.tagName === "P" && passAgain.value === pass.value) {
+                        passAgainContainer.lastElementChild.remove(passAgainContainer.lastElementChild.tagName);
+                    }
+                }
+            }
+            if (passAgainContainer.lastElementChild.tagName != "P") okColoer(passAgain)
+        }
+
+        //顯示
+        function addRemind(msg) {  //新增警示標語
+            var remind = document.createElement("p")
+            remind.innerText = msg
+            remind.classList.add("remind")
+            return remind
+        }
+
+        function addRemind(msg) {  //移除警示標語
+            var remind = document.createElement("p")
+            remind.innerText = msg
+            remind.classList.add("remind")
+            return remind
+        }
+
+        function errorColor(e) {
+            e.style.border = " 2px solid #E74C3C"
+        }
+
+
+        function okColoer(e) {
+            e.style.border = " 2px solid #2ECC71"
+        }
+
+    </script>
+
+
+</body>
+
+</html>

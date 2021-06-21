@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background: #242333;
+        }
+
+        .moive-Booking {
+            margin: 0 auto;
+            padding-top: 130px;
+            width: 400px;
+            height: 500px;
+        }
+
+        .mr-16 {
+            margin-right: 16px;
+        }
+
+        /*****
+        共用
+        *****/
+        .seat {
+            height: 12px;
+            width: 16px;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            background: #444451;
+            display: inline-block;
+        }
+
+        .seat-Selected {
+            background: #6FEAF6;
+        }
+
+        .seat-Occupied {
+            background: #fff;
+        }
+
+        .seat-black {
+            background: #444451;
+        }
+
+        .enlarge {
+            transform: scale(1.3);
+        }
+
+        /*****
+        head
+        *****/
+        .moive-head {
+            width: 100%;
+            height: 50px;
+            padding-top: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .moive-head p {
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+            display: inline;
+            padding: 15px;
+        }
+
+        .moive-option {
+            appearance: none;
+            /*取消option預設的箭頭*/
+            width: 190px;
+            height: 30px;
+            padding-left: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        .team {
+
+            width: 32%;
+            height: 100%;
+            text-align: center;
+            padding-top: 5px;
+            display: inline-block;
+        }
+
+        .team div {
+            height: 12px;
+            width: 16px;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            display: inline-block;
+        }
+
+        /*****
+        seatSort
+        *****/
+        .seatSort {
+            background: #201F2E;
+            width: 70%;
+            height: 30px;
+            margin: 0 auto;
+        }
+
+        .seatSort p {
+            color: #777777;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            display: inline-block;
+            margin: 0;
+        }
+
+        .Screen {
+            height: 100px;
+            width: 50%;
+            background: #FFF;
+            transform: rotateX(-45deg);
+            box-shadow: 0 3px 10px rgb(255 255 255 / 70%);
+            margin: 20px auto;
+
+        }
+
+        .seat-Zone {
+            width: 50%;
+            height: 100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .seat-Row {
+            height: 15px;
+            width: 100%;
+            margin: 2px 0;
+        }
+
+        .movie-cost {
+            margin-top: 30px;
+            color: #fff;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+        }
+
+        .movie-cost-point {
+            color: #6FEAF6;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="moive-Booking">
+        <header class="moive-head">
+            <p>Pick a movie: </p>
+            <select class="moive-option">
+                <option value="Avengers: Endgame ($10)">Avengers: Endgame ($10)</option>
+                <option value="Joker ($12)">Joker ($12)</option>
+                <option value="Toy Story 4 ($8)">Toy Story 4 ($8)</option>
+                <option value="The Lion King ($9)">The Lion King ($9)</option>
+            </select>
+        </header>
+        <div class="seatSort">
+            <div class="team">
+                <div class="seat-black"></div>
+                <p>N/A</p>
+            </div>
+            <div class="team">
+                <div class="seat-Selected"></div>
+                <p>Selected </p>
+            </div>
+            <div class="team">
+                <div class="seat-Occupied"></div>
+                <p>Occupied</p>
+            </div>
+        </div>
+        <div class="Screen"></div>
+
+        <div class="seat-Zone">
+            <div class="seat-Row">
+                <div class="seat "></div>
+                <div class="seat mr-16"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat mr-16"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <div class="seat-Row">
+                <div class="seat"></div>
+                <div class="seat mr-16"></div>
+                <div class="seat"></div>
+                <div class="seat seat-Occupied "></div>
+                <div class="seat seat-Occupied "></div>
+                <div class="seat mr-16"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <div class="seat-Row">
+                <div class="seat"></div>
+                <div class="seat mr-16"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat mr-16"></div>
+                <div class="seat seat-Occupied "></div>
+                <div class="seat seat-Occupied "></div>
+            </div>
+            <div class="seat-Row">
+                <div class="seat"></div>
+                <div class="seat mr-16"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat mr-16"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <div class="seat-Row">
+                <div class="seat"></div>
+                <div class="seat mr-16"></div>
+                <div class="seat"></div>
+                <div class="seat seat-Occupied "></div>
+                <div class="seat seat-Occupied "></div>
+                <div class="seat mr-16"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <div class="seat-Row">
+                <div class="seat"></div>
+                <div class="seat mr-16"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat seat-Occupied "></div>
+                <div class="seat mr-16 seat-Occupied "></div>
+                <div class="seat seat-Occupied "></div>
+                <div class="seat"></div>
+            </div>
+        </div>
+
+        <p class="movie-cost">You have selected <span id="displayNum" class="movie-cost-point"> 0 </span> seats for a
+            price of $ <span id="displayTotal" class="movie-cost-point"> 0
+            </span></p>
+    </section>
+
+
+    <script>
+        var moiveOption = document.querySelector(".moive-option");
+        var seat = document.querySelectorAll(".seat");
+        var displayNum = document.querySelector("#displayNum")
+        var displayTotal = document.querySelector("#displayTotal")
+
+        var numPeople = 0;
+        var fare = 10;
+        var total;
+
+        //學到新事件 元件改變 
+        //如果價格被改動，則執行票價改變，跟總價改變
+        moiveOption.addEventListener("change", () => {
+            if (moiveOption.value === "Avengers: Endgame ($10)") {
+                fare = 10;
+            } else if (moiveOption.value === "Joker ($12)") {
+                fare = 12;
+            } else if (moiveOption.value === "Toy Story 4 ($8)") {
+                fare = 8;
+            } else if (moiveOption.value === "The Lion King ($9)") {
+                fare = 9;
+            }
+            totalCost()
+        })
+
+        //觸及座位時，引發檢查是否為選取過即白色
+        //如果都沒有則是人數+1變色，如果有選過人數-1變色，如果為白則是不動
+        //最後總價改變
+        seat.forEach((e) => {
+            e.addEventListener("click", () => {
+                var seatClassList = [...(e.classList)]
+                var checkColor = 0;
+                console.log(seatClassList)
+                seatClassList.forEach(seatClass => {
+                    if (seatClass === "seat-Selected") {
+                        checkColor = 1;
+                    } else if (seatClass === "seat-Occupied") {
+                        checkColor = 2;
+                    }
+                })
+
+                if (checkColor == 0) {
+                    numPeople = numPeople + 1
+                    changeColor(e)
+                } else if (checkColor == 1) {
+                    numPeople = numPeople - 1
+                    changeColor(e)
+                }
+                totalCost()
+            })
+        })
+        //總價改變且顯示方式改變
+        function totalCost() {
+            total = fare * numPeople;
+            displayNumAndTotal()
+        }
+
+        //顯示
+        //學到新事件 滑鼠移動
+        //滑鼠移到後檢查是否為白，白色不動，其他則是放大，離開後回復原狀
+        seat.forEach((e) => {
+            e.addEventListener("mouseenter", () => {
+                var seatclassList = [...(e.classList)]
+                var checkColor = 0
+                seatclassList.forEach(seatclass => {
+                    if (seatclass == "seat-Occupied") {
+                        checkColor = 1;
+                    }
+                })
+                if (checkColor == 0) e.classList.toggle("enlarge")
+            })
+
+            e.addEventListener("mouseleave", () => {
+                var seatclassList = [...(e.classList)]
+                var checkColor = 0
+                seatclassList.forEach(seatclass => {
+                    if (seatclass == "seat-Occupied") {
+                        checkColor = 1;
+                    }
+                })
+                if (checkColor == 0) e.classList.toggle("enlarge")
+            })
+        })
+        //改變選取椅子的顏色
+        function changeColor(e) {
+            e.classList.toggle("seat-Selected")
+        }
+        //改變顯示總價跟人數
+        function displayNumAndTotal() {
+            displayNum.innerText = numPeople;
+            displayTotal.innerHTML = total;
+        }
+
+
+    </script>
+</body>
+
+</html>
