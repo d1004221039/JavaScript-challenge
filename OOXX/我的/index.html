@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>FreeCodeCamp TicTacToe</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-block">
+        <div class="row text-center">
+          <div class="offset-md-2 col-md-8">
+            <h1>freecodecamp</h1>
+            <h3>tictactoe challenges</h3>
+          </div>
+        </div>
+
+        <div class="row text-center">
+          <div id="selection" class="offset-md-2 col-md-8">
+            <h4>Select Your Symbol</h4>
+            <button onclick="handlers.startGame(this)" class="btn btn-lg btn-outline-primary">O</button>
+            <button onclick="handlers.startGame(this)" class="btn btn-lg btn-outline-success">X</button>
+          </div>
+
+          <div id="status" class="offset-md-2 col-md-8 hide">
+            <div id="alert" class="alert alert-success hide" role="alert">
+            </div>
+            <!-- <h2>Status</h2>
+            <h4 id="statusContent"></h4> -->
+            <button onclick="model.reset()" class="btn-lg btn-outline-warning">Reset</button>
+          </div>
+        </div>
+        <hr>
+
+        <div class="row text-center">
+          <div class="offset-md-2 col-md-8">
+            <div class="panel panel-default">
+              <table class="table table-bordered table-curved hide">
+                <tr>
+                  <td id="cellOne" onclick="handlers.insertPlayerMove(0,0,model.playerOne);handlers.animate(this);">
+                  </td>
+                  <td id="cellTwo" onclick="handlers.insertPlayerMove(0,1,model.playerOne);handlers.animate(this);">
+                  </td>
+                  <td id="cellThree" onclick="handlers.insertPlayerMove(0,2,model.playerOne);handlers.animate(this);">
+                  </td>
+                </tr>
+                <tr>
+                  <td id="cellFour" onclick="handlers.insertPlayerMove(1,0,model.playerOne);handlers.animate(this);">
+                  </td>
+                  <td id="cellFive" onclick="handlers.insertPlayerMove(1,1,model.playerOne);handlers.animate(this);">
+                  </td>
+                  <td id="cellSix" onclick="handlers.insertPlayerMove(1,2,model.playerOne);handlers.animate(this);">
+                  </td>
+                </tr>
+                <tr>
+                  <td id="cellSeven" onclick="handlers.insertPlayerMove(2,0,model.playerOne);handlers.animate(this);">
+                  </td>
+                  <td id="cellEight" onclick="handlers.insertPlayerMove(2,1,model.playerOne);handlers.animate(this);">
+                  </td>
+                  <td id="cellNine" onclick="handlers.insertPlayerMove(2,2,model.playerOne);handlers.animate(this);">
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="script.js" charset="utf-8"></script>
+
+</body>
+
+</html>

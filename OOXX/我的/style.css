@@ -1,0 +1,54 @@
+body {
+  background: url(https://source.unsplash.com/2UbJtgQp8VQ/1200x800);
+  font-family: 'Indie Flower', cursive;
+}
+
+.card {
+  opacity: 0.7;
+}
+
+.table td {
+  border: 1px solid black;
+  height: 100px;
+  width: 100px;
+  font-size: 3em;
+}
+
+.hide {
+  display: none;
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+.table-curved {
+    border-collapse: separate;
+}
+.table-curved {
+    border: solid #ccc 1px;
+    border-radius: 6px;
+    border-left:0px;
+}
+.table-curved td, .table-curved th {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+.table-curved th {
+    border-top: none;
+}
+.table-curved th:first-child {
+    border-radius: 6px 0 0 0;
+}
+.table-curved th:last-child {
+    border-radius: 0 6px 0 0;
+}
+.table-curved th:only-child{
+    border-radius: 6px 6px 0 0;
+}
+.table-curved tr:last-child td:first-child {
+    border-radius: 0 0 0 6px;
+}
+.table-curved tr:last-child td:last-child {
+    border-radius: 0 0 6px 0;
+}
