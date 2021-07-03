@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .game-zone {
+            width: 49%;
+            float: left;
+        }
+
+        .game-zone input {
+            margin-top: 10px;
+            width: 50px;
+        }
+
+        .rule-zone {
+            width: 49%;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="game-zone">
+        <input id="userInput" type="text">
+        <button id="btn" onclick="controller.userAns()">送出</button>
+        <p id="result"></p>
+        <p id="result"></p>
+        <p id="result"></p>
+        <p id="result"></p>
+        <p id="result"></p>
+        <p id="result"></p>
+        <p id="result"></p>
+        <p id="result"></p>
+        <p id="result"></p>
+        <p id="result"></p>
+    </div>
+    <div class="rule-zone">
+        <p>遊戲規則</p>
+        <p>電腦會出現，隨機出現0~9的四位數字</p>
+        <p>且四個數字皆不重複，10次內猜對數字即可獲勝</p>
+        <p>玩家輸入：</p>
+        <p>給予幾A幾B的提示，A代表位置跟數字都正確，B代表數字正確，位置不正確</p>
+        <p>使用者輸入一定要4位數字，且不重複</p>
+        <p>遊戲次數只有10次</p>
+        <p>必須輸入數字0~9</p>
+
+    </div>
+
+    <script>
+
+        var model = {
+            numList: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
+            a: 0,
+            b: 0,
+            answers: [],
+            challengeNum: 0,
+            ansRandom: function () {
+                this.answers = []
+                for (i = 0; i < 4; i++) {
+                    this.answers.push(Math.round(Math.random() * 9))
+                }
+                if (model.numRepeat(model.answers) == "repeat") this.ansRandom()
+            },
+            numRepeat: function (array) {
+                var verification = ""
+                array.forEach((value, index) => {
+                    for (i = index + 1; i < array.length; i++) {
+                        if (value === array[i]) verification = "repeat"
+                    }
+                });
+                if (verification == "repeat") return "repeat"
+            },
+            comparison: function (answers, userAns) {
+                answers.forEach((ans, ansIndex) => {
+                    userAns.forEach((useNum, useIndex) => {
+                        if (ans == useNum) {
+                            if (ansIndex == useIndex) {
+                                this.a += 1
+                            } else {
+                                this.b += 1
+                            }
+                        }
+                    })
+                })
+                view.displayResult(userAns, this.a, this.b)
+
+                if (this.a == 4) {
+                    alert("恭喜答對")
+                    for (i = 0; i < 10; i++) {
+                        result[i].innerHTML = ""
+                    }
+                    model.challengeNum = 0
+                }
+                model.challengeNum += 1
+                this.a = 0
+                this.b = 0
+                if (model.challengeNum == 10) {
+                    alert(`沒答對遊戲結束，答案是 ${answers}`)
+                    for (i = 0; i < 10; i++) {
+                        result[i].innerHTML = ""
+                    }
+                    model.challengeNum = 0
+                }
+            }
+        }
+
+        var controller = {
+            btn: document.querySelector("#btn"),
+            userInput: document.querySelector("#userInput"),
+            result: document.querySelectorAll("#result"),
+            userAns: function () {
+                var testNum = 0
+                userAns = this.userInput.value.split("")
+                userAns.forEach(useNum => {
+                    if (model.numList.includes(useNum) == false) testNum = 1
+                })
+
+                if (testNum == 1) {
+                    alert("請輸入數字")
+                } else {
+                    if (userAns.length != 4) {
+                        alert("請輸入四個數字")
+                    } else {
+                        if (model.numRepeat(userAns) === "repeat") {
+                            alert("請輸入四個不重複的數字")
+                        } else {
+                            model.comparison(model.answers, userAns)
+                        }
+                    }
+                }
+                this.userInput.value = ""
+            }
+        }
+
+        var view = {
+            displayResult: function (userAns, a, b) {
+                controller.result[model.challengeNum].innerHTML = `答案${model.challengeNum + 1} ${controller.userInput.value} 是 ${a}A, ${b}B`
+            }
+        }
+        model.ansRandom()
+
+
+
+
+
+
+        //使用者故事
+        //隨機出現0~9的四位數字，且四個數字皆不重複
+        //給予幾A幾B的提示，A代表位置正確，B代表數字正確位置不正確
+        //使用者輸入一定要4位數字，且不重複
+        //遊戲次數只有10次
+        //必須輸入數字0~9
+
+        //超級記憶版
+    </script>
+
+</body>
+
+</html>
