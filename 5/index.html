@@ -6,54 +6,277 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <script src="https://kit.fontawesome.com/ed5199de00.js" crossorigin="anonymous"></script>
     <style>
-        .game-zone {
-            width: 49%;
+        body {
+            background-image: url("./back2.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .pt-20 {
+            padding-top: 20px;
+        }
+
+        .container {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        /*input-zone*/
+        .input-zone {
+            width: 48%;
             float: left;
+            height: 600px;
+            background: linear-gradient(45deg, rgba(0, 84, 75, 0.3), rgba(0, 60, 53, 0.3));
+            border-radius: 10px;
+        }
+
+        .input-windowns {
+            width: 80%;
+            height: 50px;
+            box-sizing: border-box;
+            margin: 20px auto;
+        }
+
+        .input-zone input {
+            width: 100%;
+            height: 100%;
+            font-size: 30px;
+            letter-spacing: 55px;
+            /*字距*/
+        }
+
+        .row {
+            margin-top: 20px;
+            width: 100%;
+            height: 70px;
+            box-sizing: border-box;
+            padding: 0 10%;
         }
 
         .game-zone input {
             margin-top: 10px;
             width: 50px;
+
         }
 
-        .rule-zone {
-            width: 49%;
+        [class^="keyboard-btn"] {
+            box-sizing: border-box;
+            border: 0;
+            border-radius: 5px;
+
+            height: 100%;
+            float: left;
+            text-align: center;
+            font-size: 30px;
+            color: #fff;
+            background: #006e62;
+        }
+
+        .keyboard-btn {
+            width: calc((100% - 20px) / 3);
+        }
+
+        .keyboard-btn-0 {
+            width: 100%
+        }
+
+        [class^="keyboard-btn"]:hover {
+            color: #79ebdd;
+            background: #025c51;
+        }
+
+        .row .keyboard-btn:not(:last-child) {
+            margin-right: 10px;
+        }
+
+
+        .inputBtn,
+        .ruleBtn {
+            width: 100%;
+            height: 40px;
+            background: #dfdfdf;
+            border-radius: 5px;
+            border: 0;
+            color: #006e62;
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: 10px;
+
+        }
+
+        .inputBtn:hover,
+        .ruleBtn:hover {
+            background: #797979;
+            color: #025c51;
+        }
+
+        /*output-zone*/
+        .output-zone {
+            width: 48%;
             float: right;
+            height: 600px;
+            background: linear-gradient(45deg, rgba(0, 84, 75, 0.3), rgba(0, 60, 53, 0.3));
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        [class^="result"] {
+            box-sizing: border-box;
+            width: 100%;
+            height: 10%;
+            margin: 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            text-align: center;
+            font-size: 50px;
+            letter-spacing: 10px;
+            /*字距*/
+        }
+
+        .result-0 {
+            background: #0D5149;
+        }
+
+        .result-1 {
+            background: #26645D;
+        }
+
+        [class^="result"] span {
+            height: 100%;
+            width: 50%;
+            background: #0C2E2A;
+            float: right;
+            color: #fff;
+            text-align: center;
+            font-size: 50px;
+            letter-spacing: 10px;
+            /*字距*/
+
+        }
+
+        /*gameOver*/
+        .gameOver {
+            position: fixed;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .over-windowns,
+        .rule-zone {
+
+            width: 600px;
+            background: #26645D;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            border-bottom-right-radius: 2px;
+            border-bottom-left-radius: 2px;
+            overflow: hidden;
+            position: relative;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            text-align: center;
+            color: #fff;
+            font-size: 20px;
+            letter-spacing: 10px;
+            /*字距*/
+        }
+
+        .over-top {
+            height: 30px;
+            width: 100%;
+            background: #0D5149;
+            padding-top: 10px;
+        }
+
+        .fa-times-circle {
+            float: right;
+
         }
     </style>
 </head>
 
 <body>
-    <div class="game-zone">
-        <input id="userInput" type="text">
-        <button id="btn" onclick="controller.userAns()">送出</button>
-        <p id="result"></p>
-        <p id="result"></p>
-        <p id="result"></p>
-        <p id="result"></p>
-        <p id="result"></p>
-        <p id="result"></p>
-        <p id="result"></p>
-        <p id="result"></p>
-        <p id="result"></p>
-        <p id="result"></p>
-    </div>
-    <div class="rule-zone">
-        <p>遊戲規則</p>
-        <p>電腦會出現，隨機出現0~9的四位數字</p>
-        <p>且四個數字皆不重複，10次內猜對數字即可獲勝</p>
-        <p>玩家輸入：</p>
-        <p>給予幾A幾B的提示，A代表位置跟數字都正確，B代表數字正確，位置不正確</p>
-        <p>使用者輸入一定要4位數字，且不重複</p>
-        <p>遊戲次數只有10次</p>
-        <p>必須輸入數字0~9</p>
+    <div class="container pt-20">
+
+        <div class="input-zone">
+            <div class="input-windowns">
+                <input id="userInput" type="text">
+            </div>
+            <div class="row">
+                <button onclick="controller.keyboard('7')" class="keyboard-btn">7</button>
+                <button onclick="controller.keyboard('8')" class="keyboard-btn">8</button>
+                <button onclick="controller.keyboard('9')" class="keyboard-btn">9</button>
+            </div>
+            <div class="row">
+                <button onclick="controller.keyboard('4')" class="keyboard-btn">4</button>
+                <button onclick="controller.keyboard('5')" class="keyboard-btn">5</button>
+                <button onclick="controller.keyboard('6')" class="keyboard-btn">6</button>
+            </div>
+            <div class="row">
+                <button onclick="controller.keyboard('1')" class="keyboard-btn">1</button>
+                <button onclick="controller.keyboard('2')" class="keyboard-btn">2</button>
+                <button onclick="controller.keyboard('3')" class="keyboard-btn">3</button>
+            </div>
+            <div class="row">
+                <button onclick="controller.keyboard('0')" class="keyboard-btn-0">0</button>
+
+            </div>
+            <div class="row">
+                <button class="inputBtn" onclick="controller.userAns()">送出</button>
+            </div>
+            <div class="row">
+                <button class="ruleBtn" onclick="controller.ruleBtn()">規則</button>
+            </div>
+        </div>
+        <div class="output-zone">
+            <p id="result" class="result-1 hide"></p>
+            <p id="result" class="result-0 hide"></p>
+            <p id="result" class="result-1 hide"></p>
+            <p id="result" class="result-0 hide"></p>
+            <p id="result" class="result-1 hide"></p>
+            <p id="result" class="result-0 hide"></p>
+            <p id="result" class="result-1 hide"></p>
+            <p id="result" class="result-0 hide"></p>
+            <p id="result" class="result-1 hide"></p>
+            <p id="result" class="result-0 hide"></p>
+        </div>
+
+        <div id="gameOver" class="gameOver  hide">
+            <div class="over-windowns">
+                <div class="over-top "><i id="gameOverX" onclick="view.gameOverClear()" class="fas fa-times-circle"></i>
+                </div>
+                遊戲結束
+            </div>
+        </div>
 
     </div>
-
+    <div id="ruleZone" class="gameOver hide">
+        <div class="rule-zone">
+            <div class="over-top"><i id="gameOverX" onclick="view.ruleZone()" class="fas fa-times-circle"></i>
+            </div>
+            <p>遊戲規則</p>
+            <p>電腦會出現，隨機出現0~9的四位數字</p>
+            <p>且四個數字皆不重複，10次內猜對數字即可獲勝</p>
+            <p>玩家輸入：</p>
+            <p>給予幾A幾B的提示，A代表位置跟數字都正確，B代表數字正確，位置不正確</p>
+            <p>使用者輸入一定要4位數字，且不重複</p>
+            <p>遊戲次數只有10次</p>
+            <p>必須輸入數字0~9</p>
+        </div>
+    </div>
     <script>
-
         var model = {
             numList: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
             a: 0,
@@ -66,6 +289,7 @@
                     this.answers.push(Math.round(Math.random() * 9))
                 }
                 if (model.numRepeat(model.answers) == "repeat") this.ansRandom()
+                console.log(model.answers)
             },
             numRepeat: function (array) {
                 var verification = ""
@@ -91,29 +315,31 @@
                 view.displayResult(userAns, this.a, this.b)
 
                 if (this.a == 4) {
-                    alert("恭喜答對")
                     for (i = 0; i < 10; i++) {
                         result[i].innerHTML = ""
                     }
                     model.challengeNum = 0
+                    view.gameOver(`恭喜答對`, `答案是 ${answers}`)
+                    model.ansRandom()
                 }
                 model.challengeNum += 1
                 this.a = 0
                 this.b = 0
                 if (model.challengeNum == 10) {
-                    alert(`沒答對遊戲結束，答案是 ${answers}`)
-                    for (i = 0; i < 10; i++) {
-                        result[i].innerHTML = ""
-                    }
                     model.challengeNum = 0
+                    view.gameOver(`沒答對遊戲結束`, `答案是 ${answers}`)
+                    model.ansRandom()
                 }
             }
         }
 
         var controller = {
-            btn: document.querySelector("#btn"),
             userInput: document.querySelector("#userInput"),
             result: document.querySelectorAll("#result"),
+            gameOver: document.querySelector("#gameOver"),
+            gameOverX: document.querySelector("#gameOverX"),
+            ruleZone: document.querySelector("#ruleZone"),
+
             userAns: function () {
                 var testNum = 0
                 userAns = this.userInput.value.split("")
@@ -135,19 +361,50 @@
                     }
                 }
                 this.userInput.value = ""
+            },
+            ruleBtn: function () {
+                view.ruleBtn()
+            },
+            keyboard: function (num) {
+                controller.userInput.value = controller.userInput.value + num
             }
         }
 
         var view = {
             displayResult: function (userAns, a, b) {
-                controller.result[model.challengeNum].innerHTML = `答案${model.challengeNum + 1} ${controller.userInput.value} 是 ${a}A, ${b}B`
+                controller.result[model.challengeNum].innerHTML = `${controller.userInput.value}<span>${a}A${b}B</span>`
+                controller.result[model.challengeNum].classList.toggle("hide")
+            },
+            gameOver: function (winLose, value) {
+                controller.gameOver.classList.remove("hide")
+                controller.gameOver.children[0].innerHTML =
+                    ` <div class="over-top "><i id="gameOverX" onclick="view.gameOverClear()" class="fas fa-times-circle">
+                    </i> </div> <p> ${winLose}</p>  <p> ${value}</p> `
+            },
+            gameOverClear: function () {
+                controller.gameOver.classList.add("hide")
+                controller.result.forEach(e => {
+                    e.classList.add("hide")
+                })
+            },
+            ruleBtn: function () {
+                controller.ruleZone.classList.remove("hide")
+            },
+            ruleZone: function () {
+                controller.ruleZone.classList.add("hide")
             }
         }
         model.ansRandom()
+        window.addEventListener('click', (e) => {
+            if (e.target.id === "ruleZone") view.ruleZone()
+            if (e.target.id === "gameOver") view.gameOverClear()
+        })
 
 
-
-
+        document.addEventListener('keydown', e => {
+            console.log(e)
+            if (e.keyCode == "13") controller.userAns()
+        })
 
 
         //使用者故事
