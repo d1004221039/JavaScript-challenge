@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Hello!</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.1.4/tailwind.min.css" />
+</head>
+<!--這裡不用管-->
+
+<body class="font-sans text-purple-600 pt-20 px-4" style="background:#F8B288">
+    <div class="container mx-auto shadow-2xl border border-purple-200 p-8 max-w-xl bg-white">
+        <h1 class="text-2xl font-medium uppercase text-center border-b-2 border-purple-300 pb-4">
+            My Todo List
+        </h1>
+        <!--這裡不用管-->
+
+        <!--在這新增新的代辦事項-->
+        <div id="todoList">
+            <!-- <li class="border-b border-purple-400 text-xl py-4 flex justify-between items-center">
+                <div class="flex items-center">
+                    <img id="toggleComplete" data-item="${todo.id}" class="w-8 mr-2"
+                        src="https://cdn.glitch.com/0946ee55-e0f2-43ff-b69c-572b4d821198%2Fcheckbox.png?v=1577886293867" />
+                    ${todo.todoText}
+                </div>
+                <div class="flex">
+                    <img id="updateTodoBtn" data-item="${todo.id}" src="./edit.svg"
+                        style="width: 18px; margin-right: 5px;" />
+                    <img id="deleteTodoBtn" data-item="${todo.id}" src="./trash.svg" style="width: 18px; " />
+                </div>
+            </li> -->
+        </div>
+        <!--在這新增新的代辦事項-->
+
+        <!--在這包覆下面Toggle All跟 Add按鈕。另外是新增用的視窗、另外是更新用的視窗  -->
+        <div class="flex justify-between mt-4">
+            <!-- 全勾的按鈕 (Add Todo)     -->
+            <button id="toggleAllButton" class="py-2 px-4 w-40">
+                Toggle All
+            </button>
+            <!-- 新增的按鈕 (Add Todo)     -->
+            <button id="addTodoBtn" class="mr-2 py-2 px-4 rounded w-40">
+                Add
+            </button>
+            <!-- 新增新代辦用的視窗 (Add Todo Modal) -->
+            <div id="newTodoModal" class="modal hidden fixed z-10 top-0 left-0 w-full h-full overflow-auto">
+                <!-- Modal content -->
+                <div class="modal-content bg-purple-100 mx-auto my-40 p-4 shadow" style="width:350px;">
+                    <div id="addNewModalCross" class="text-right text-3xl close">&times;</div><!-- 輸入視窗裡的右上角XX(add) -->
+                    <label class="block mb-2 text-purple-600">Add New Todo</label>
+                    <input id="addTodoTextInput" type="text"
+                        class="mr-2 py-2 px-4 border border-purple-400 focus:bg-purple-100 rounded w-full" />
+                    <!-- 輸入視窗裡的內容(add) -->
+                    <div class="flex justify-end mt-4">
+                        <button id="addNewBtn" class="text-purple-600 font-medium uppercase ">
+                            <!-- 輸入視窗裡的按鈕(add) -->
+                            Add New
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- 更新代辦用的視窗(Update Todo Modal) -->
+            <div id="updateTodoModal" data-item=""
+                class="modal hidden fixed z-10 top-0 left-0 w-full h-full overflow-auto">
+                <!-- Modal content -->
+                <div class="modal-content bg-purple-100 mx-auto my-40 p-4 shadow" style="width:350px;">
+                    <div id="updateModalCross" class="text-right text-3xl close">&times;</div> <!-- 更新視窗裡的右上角XX(add) -->
+                    <label class="block mb-2 text-purple-600 font-medium uppercase">Update Todo</label>
+                    <input id="updateTodoTextInput" type="text"
+                        class="mr-2 py-2 px-4 border border-purple-400 focus:bg-purple-100 rounded w-full" />
+                    <!-- 更新視窗裡的內容(add) -->
+                    <div class="flex justify-end mt-4">
+                        <button id="updateModalBtn" class="text-purple-600 font-medium uppercase ">
+                            <!-- 更新視窗裡的按鈕(add) -->
+                            Update
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- import the webpage's javascript file -->
+    <script src="todos-beginning.js"></script>
+</body>
+
+</html>
+
+
+<!-- <li class="border-b border-purple-400 text-xl py-4 flex justify-between items-center">
+                <div class="flex items-center">
+                    use data-item to track todo id
+                    <img id="toggleComplete" data-item="1" class="w-8 mr-2"
+                        src="https://cdn.glitch.com/0946ee55-e0f2-43ff-b69c-572b4d821198%2Fcheckbox.png?v=1577886293867" />
+                    Completed Todo Text
+                </div>
+                <div class="flex">
+                    <img id="updateTodoBtn" data-item="1" src="edit.svg" style="width: 18px; margin-right: 5px;" />
+                    <img id="deleteTodoBtn" data-item="1" src="trash.svg" style="width: 18px; " />
+                </div>
+            </li>
+
+            <li class="border-b border-purple-400 text-xl py-4 flex justify-between items-center">
+                <div class="flex items-center">
+                    <span id="toggleComplete" data-item="1" class="inline-block mr-2 w-8 h-8 bg-purple-200"></span> Not
+                    Finished Todo Text
+                </div>
+                <div class="flex">
+                    <img id="updateTodoBtn" data-item="1" src="/edit.svg" style="width: 18px;  margin-right: 5px;" />
+                    <img id="deleteTodoBtn" data-item="1" src="/trash.svg" style="width: 18px; " />
+                </div>
+            </li> -->
